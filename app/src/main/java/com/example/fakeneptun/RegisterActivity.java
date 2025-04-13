@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     EditText userNameET , userEmailET,  passwordET, passowrdConfirmET, familyNameET, firstNameET;
     CheckBox isTeacher;
+    TextView successText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        successText = findViewById(R.id.successText);
     }
 
     public void onRegister(View view) {
@@ -74,6 +77,17 @@ public class RegisterActivity extends AppCompatActivity {
                                     //Log.w(LOG_TAG, "Hiba történt a Firestore mentés során", e);
                                     Toast.makeText(RegisterActivity.this, "Nem sikerült elmenteni az adatokat: " + e.getMessage(), Toast.LENGTH_LONG).show();
                                 });
+                        successText.setVisibility(View.VISIBLE);
+                        successText.animate()
+                                .alpha(1f)
+                                .setDuration(500)
+                                .withEndAction(() -> successText.animate()
+                                        .alpha(0f)
+                                        .setDuration(1500)
+                                        .setStartDelay(500)
+                                        .withEndAction(this::moveToHome)
+                                        .start())
+                                .start();
                     } else {
                         //Log.d(LOG_TAG, "Felhasználó létrehozása sikertelen: " + Objects.requireNonNull(task.getException()).getMessage());
                         Toast.makeText(RegisterActivity.this, "Felhasználó létrehozása sikertelen: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
@@ -83,11 +97,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void moveToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     public void moveToHome() {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

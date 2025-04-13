@@ -12,4 +12,6 @@
     <string name="isTeacher">Tanár vagy?</string>
     <string name="cim">Cím</string>
     <string name="logout">Kijelentkezés</string>
+    <string name="loginSuccess">✔ Sikeres bejelentkezés!</string>
+    <string name="registerSuccess">✔ Sikeres regisztráció</string>
 </resources>
