@@ -1,7 +1,7 @@
 package com.example.fakeneptun;
 
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +18,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final String LOG_TAG = HomeActivity.class.getName();
+    //private static final String LOG_TAG = HomeActivity.class.getName();
+    RecyclerView recyclerView;
     private FirebaseUser user;
     private FirebaseFirestore db;
-
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +40,9 @@ public class HomeActivity extends AppCompatActivity {
                     boolean isTeacher = Boolean.TRUE.equals(document.getBoolean("isTeacher"));
                     setupMenu(isTeacher);
                 }
-            }).addOnFailureListener(e -> {
-                Toast.makeText(this, "Nem sikerült lekérni a felhasználót.", Toast.LENGTH_SHORT).show();
-            });
+            }).addOnFailureListener(e -> Toast.makeText(this, "Nem sikerült lekérni a felhasználót.", Toast.LENGTH_SHORT).show());
         } else {
-            Log.d(LOG_TAG, "Felhasználó nincs bejelentkezve!");
+            //Log.d(LOG_TAG, "Felhasználó nincs bejelentkezve!");
             finish();
         }
     }

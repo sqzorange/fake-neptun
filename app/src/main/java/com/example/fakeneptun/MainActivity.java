@@ -2,7 +2,7 @@ package com.example.fakeneptun;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,8 +11,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
+
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG = MainActivity.class.getName();
+    //private static final String LOG_TAG = MainActivity.class.getName();
     private FirebaseAuth mAuth;
     EditText usernameET, passwordET;
 
@@ -35,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                Log.d(LOG_TAG, "Bejelentkezve!");
+                //Log.d(LOG_TAG, "Bejelentkezve!");
                 moveToHome();
             } else {
-                Log.d(LOG_TAG, "A bejelentkezés nem sikerült: " + Objects.requireNonNull(task.getException()).getMessage());
-                Toast.makeText(MainActivity.this, "A bejelentkezés nem sikerült: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                //Log.d(LOG_TAG, "A bejelentkezés nem sikerült: " + Objects.requireNonNull(task.getException()).getMessage());
+                Toast.makeText(MainActivity.this, "A bejelentkezés nem sikerült: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if (mAuth.getCurrentUser() != null) {
-            Log.d(LOG_TAG, "Felhasználó már be van jelentkezve -> átlépés HomeActivity-re");
+            //Log.d(LOG_TAG, "Felhasználó már be van jelentkezve -> átlépés HomeActivity-re");
             moveToHome();
         }
     }
