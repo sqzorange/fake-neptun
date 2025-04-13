@@ -7,6 +7,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOG_TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
         String userNameStr = userName.getText().toString();
         String passwordStr = password.getText().toString();
 
-        Log.i("MainActivity", "Bejelentkezett: " + userNameStr + ", Jelszó: " + passwordStr);
+        Log.i(LOG_TAG, "Bejelentkezett: " + userNameStr + ", Jelszó: " + passwordStr);
     }
 }
