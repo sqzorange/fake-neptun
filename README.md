@@ -6,4 +6,4 @@ Pixel 9 Android API 36-on ment a debuggolás.
 - Bejelentkezés
 - Regisztráció
 - Hub / Főoldal
-A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Jegyek rögtítése)
+> A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Jegyek rögtítése)
