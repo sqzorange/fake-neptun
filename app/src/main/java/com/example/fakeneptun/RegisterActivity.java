@@ -8,8 +8,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -74,11 +72,9 @@ public class RegisterActivity extends AppCompatActivity {
                         user.put("isTeacher", teacher);
                         user.put("UUID", uid);
 
-                        Task<Void> users = db.collection("users").document(uid)
+                        db.collection("users").document(uid)
                                 .set(user)
-                                .addOnSuccessListener(aVoid -> {
-                                    moveToHome();
-                                })
+                                .addOnSuccessListener(aVoid -> moveToHome())
                                 .addOnFailureListener(e -> {
                                     Log.w(LOG_TAG, "Hiba történt a Firestore mentés során", e);
                                     Toast.makeText(RegisterActivity.this, "Nem sikerült elmenteni az adatokat: " + e.getMessage(), Toast.LENGTH_LONG).show();
