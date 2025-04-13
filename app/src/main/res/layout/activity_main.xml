@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA"
     android:padding="24dp"
     tools:context=".MainActivity">
 
@@ -15,7 +14,6 @@
         android:text="@string/login"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#212121"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
