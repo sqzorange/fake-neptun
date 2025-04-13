@@ -44,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null) {
+            Log.d(LOG_TAG, "Felhasználó már be van jelentkezve -> átlépés HomeActivity-re");
+            moveToHome();
+        }
+    }
+
     public void onRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
