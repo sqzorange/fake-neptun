@@ -1,6 +1,7 @@
 package com.example.fakeneptun;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 //import android.util.Log;
 import android.view.View;
@@ -30,7 +31,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        int orientation = getResources().getConfiguration().orientation;
+
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // Portrait: 2 oszlop
+        }
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
