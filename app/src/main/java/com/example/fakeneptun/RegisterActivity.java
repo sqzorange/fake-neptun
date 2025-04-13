@@ -1,5 +1,6 @@
 package com.example.fakeneptun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        userNameET = findViewById(R.id.editTextUserName);
+        userEmailET = findViewById(R.id.editEmail);
+        passwordET = findViewById(R.id.editTextPassword);
+        passowrdConfirmET = findViewById(R.id.passwordAgain);
+
         //Bundle bundle = getIntent().getExtras();
         //bundle.getInt("SECRET_KEY");
 
@@ -40,11 +46,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!password.equals(passwordConfirm)) {
             Log.e(LOG_TAG, "Nem egyezik meg a két jelszó!");
+            return;
         }
 
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", Email: " + userEmail + ", Jelszó: " + password);
     }
 
     public void onCancel(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("SECRET_KEY", 69);
+        startActivity(intent);
     }
 }
