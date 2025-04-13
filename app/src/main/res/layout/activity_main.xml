@@ -38,14 +38,27 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginButton"
         android:layout_width="233dp"
         android:layout_height="62dp"
         android:text="@string/login"
-        android:onClick="login"
+        android:onClick="onLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:layout_constraintVertical_bias="0.091" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="233dp"
+        android:layout_height="62dp"
+        android:text="@string/register"
+        android:onClick="onRegister"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintVertical_bias="0.091" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

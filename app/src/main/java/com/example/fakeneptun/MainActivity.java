@@ -1,5 +1,6 @@
 package com.example.fakeneptun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,20 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
+    EditText usernameET;
+    EditText passwordET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        usernameET = findViewById(R.id.editTextUserName);
+        passwordET = findViewById(R.id.editTextPassword);
     }
 
-    public void login(View view) {
-        EditText userName = findViewById(R.id.editTextUserName);
-        EditText password = findViewById(R.id.editTextPassword);
+    public void onLogin(View view) {
+        String userName = usernameET.getText().toString();
+        String password = passwordET.getText().toString();
 
-        String userNameStr = userName.getText().toString();
-        String passwordStr = password.getText().toString();
+        Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", Jelszó: " + password);
+    }
 
-        Log.i(LOG_TAG, "Bejelentkezett: " + userNameStr + ", Jelszó: " + passwordStr);
+    public void onRegister(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
