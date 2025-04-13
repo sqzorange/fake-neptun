@@ -52,9 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", Email: " + userEmail + ", Jelszó: " + password);
     }
 
-    public void onCancel(View view) {
+    public void moveToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("SECRET_KEY", 69);
         startActivity(intent);
     }
 }

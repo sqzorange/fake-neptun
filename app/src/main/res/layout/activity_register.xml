@@ -32,10 +32,10 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.133" />
 
     <EditText
         android:id="@+id/editEmail"
@@ -86,24 +86,72 @@
         app:layout_constraintVertical_bias="0.081" />
 
 
+    <EditText
+        android:id="@+id/familyName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="150dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/familyName"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordAgain"
+        app:layout_constraintVertical_bias="0.081" />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="150dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/firstName"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/familyName"
+        app:layout_constraintVertical_bias="0.081" />
+
+    <CheckBox
+        android:id="@+id/isTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="150dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:text="@string/isTeacher"
+        app:centerIfNoTextEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        app:layout_constraintVertical_bias="0.081" />
+
     <Button
         android:id="@+id/registerButton"
         android:layout_width="233dp"
         android:layout_height="62dp"
-        android:text="@string/register"
         android:onClick="onRegister"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordAgain"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintTop_toBottomOf="@+id/isTeacher"
+        app:layout_constraintVertical_bias="0.224" />
 
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="233dp"
         android:layout_height="62dp"
         android:text="@string/cancel"
-        android:onClick="onCancel"
+        android:onClick="moveToMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

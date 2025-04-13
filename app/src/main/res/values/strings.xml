@@ -7,4 +7,7 @@
     <string name="email">Email cím</string>
     <string name="passwordAgain">Jelszó megerősítése</string>
     <string name="cancel">Mégse</string>
+    <string name="familyName">Családnév</string>
+    <string name="firstName">Vezetéknév</string>
+    <string name="isTeacher">Tanár vagy?</string>
 </resources>
