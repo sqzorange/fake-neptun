@@ -6,21 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
-    private static final int SECRET_KEY = 69;
     private FirebaseAuth mAuth;
-    EditText usernameET;
-    EditText passwordET;
+    EditText usernameET, passwordET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", Jelszó: " + password);
 
-        mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(LOG_TAG, "Bejelentkezve!");
-                    moveToHome();
-                } else {
-                    Log.d(LOG_TAG, "A bejelentkezés nem sikerült: " + task.getException().getMessage());
-                    Toast.makeText(MainActivity.this, "A bejelentkezés nem sikerült: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
+        mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                Log.d(LOG_TAG, "Bejelentkezve!");
+                moveToHome();
+            } else {
+                Log.d(LOG_TAG, "A bejelentkezés nem sikerült: " + Objects.requireNonNull(task.getException()).getMessage());
+                Toast.makeText(MainActivity.this, "A bejelentkezés nem sikerült: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     public void onRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra("SECRET_KEY", 69);
         startActivity(intent);
     }
 

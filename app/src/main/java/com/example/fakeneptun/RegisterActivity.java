@@ -7,27 +7,22 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private FirebaseAuth mAuth;
-
-    EditText userNameET;
-    EditText userEmailET;
-    EditText passwordET;
-    EditText passowrdConfirmET;
-    EditText familyNameET;
-    EditText firstNameET;
+    private FirebaseFirestore db;
+    EditText userNameET , userEmailET,  passwordET, passowrdConfirmET, familyNameET, firstNameET;
     CheckBox isTeacher;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (secret_key != 69){
             finish();
         }
-
         mAuth = FirebaseAuth.getInstance();
-
+        db = FirebaseFirestore.getInstance();
     }
 
     public void onRegister(View view) {
@@ -67,21 +61,36 @@ public class RegisterActivity extends AppCompatActivity {
         }
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", Email: " + userEmail + ", Jelszó: " + password + ", családi: " + familyName + ", keresztnév: " + firstName + ", tanár: " + teacher);
         mAuth.createUserWithEmailAndPassword(userEmail, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            Log.d(LOG_TAG, "Felhasználó létrehozva!");
-                            moveToHome();
-                        } else {
-                            Log.d(LOG_TAG, "Felhasználó létrehozása sikertelen: " + task.getException().getMessage());
-                            Toast.makeText(RegisterActivity.this, "Felhasználó létrehozása sikertelen: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if(task.isSuccessful()) {
+                        Log.d(LOG_TAG, "Felhasználó létrehozva!");
+                        String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("userName", userName);
+                        user.put("email", userEmail);
+                        user.put("familyName", familyName);
+                        user.put("firstName", firstName);
+                        user.put("isTeacher", teacher);
+                        user.put("UUID", uid);
+
+                        Task<Void> users = db.collection("users").document(uid)
+                                .set(user)
+                                .addOnSuccessListener(aVoid -> {
+                                    moveToHome();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.w(LOG_TAG, "Hiba történt a Firestore mentés során", e);
+                                    Toast.makeText(RegisterActivity.this, "Nem sikerült elmenteni az adatokat: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                });
+                    } else {
+                        Log.d(LOG_TAG, "Felhasználó létrehozása sikertelen: " + Objects.requireNonNull(task.getException()).getMessage());
+                        Toast.makeText(RegisterActivity.this, "Felhasználó létrehozása sikertelen: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
-    public void moveToMain() {
+    public void moveToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
