@@ -35,11 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         firstNameET = findViewById(R.id.firstName);
         isTeacher = findViewById(R.id.isTeacher);
 
-        int secret_key = getIntent().getIntExtra("SECRET_KEY", 0);
-
-        if (secret_key != 69){
-            finish();
-        }
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
     }

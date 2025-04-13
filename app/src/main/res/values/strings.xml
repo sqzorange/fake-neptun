@@ -10,4 +10,6 @@
     <string name="familyName">Családnév</string>
     <string name="firstName">Vezetéknév</string>
     <string name="isTeacher">Tanár vagy?</string>
+    <string name="cim">Cím</string>
+    <string name="logout">Kijelentkezés</string>
 </resources>
