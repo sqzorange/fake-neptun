@@ -23,7 +23,7 @@
         android:id="@+id/usernameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/username"
+        android:hint="@string/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"

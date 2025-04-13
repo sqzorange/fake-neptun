@@ -52,9 +52,27 @@ public class RegisterActivity extends AppCompatActivity {
         boolean teacher = isTeacher.isChecked();
 
         if (!password.equals(passwordConfirm)) {
+            Toast.makeText(this, "Nem egyezik a két jelszó!", Toast.LENGTH_SHORT).show();
             //Log.e(LOG_TAG, "Nem egyezik meg a két jelszó!");
             return;
         }
+
+        if (userName.isEmpty() || userEmail.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || familyName.isEmpty() || firstName.isEmpty()) {
+            Toast.makeText(this, "Minden mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+            Toast.makeText(this, "Érvénytelen e-mail cím!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length() < 8 || !password.matches(".*[A-Z].*") || !password.matches(".*[a-z].*") || !password.matches(".*\\d.*") || !password.matches(".*[!@#$%^&*+=?-].*")) {
+            Toast.makeText(this, "A jelszónak legalább 8 karakterből kell állnia, tartalmaznia kell nagy- és kisbetűt, számot és speciális karaktert!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
         //Log.i(LOG_TAG, "Regisztrált: " + userName + ", Email: " + userEmail + ", Jelszó: " + password + ", családi: " + familyName + ", keresztnév: " + firstName + ", tanár: " + teacher);
         mAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnCompleteListener(this, task -> {
