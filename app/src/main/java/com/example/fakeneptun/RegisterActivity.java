@@ -72,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-
         //Log.i(LOG_TAG, "Regisztrált: " + userName + ", Email: " + userEmail + ", Jelszó: " + password + ", családi: " + familyName + ", keresztnév: " + firstName + ", tanár: " + teacher);
         mAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnCompleteListener(this, task -> {

@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                     new MenuItem("Hallgatók", R.drawable.ic_students),
                     new MenuItem("Jegyek rögzítése", R.drawable.ic_grades),
                     new MenuItem("Vizsgák kezelése", R.drawable.ic_exam),
-                    new MenuItem("Üzenetek", R.drawable.ic_message)
+                    new MenuItem("Üzenetek ", R.drawable.ic_message)
             );
         } else {
             menuItems = Arrays.asList(

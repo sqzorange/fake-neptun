@@ -11,9 +11,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FakeNeptun">
         <activity
-            android:name=".RegisterActivity" />
+            android:name=".activities.ExamsActivity"
+            android:exported="false" />
         <activity
-            android:name=".HomeActivity" />
+            android:name=".activities.SubjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GradesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ExamsManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GradesEntryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StudentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClassesActivity"
+            android:exported="false" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
