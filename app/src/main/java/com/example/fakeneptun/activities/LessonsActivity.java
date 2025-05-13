@@ -17,13 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LessonsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private LessonsAdapter adapter;
     private FirebaseFirestore db;
-    private FloatingActionButton fabNewLesson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,12 @@ public class LessonsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewLessons);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        fabNewLesson = findViewById(R.id.fab_new_lesson);
-        fabNewLesson.setOnClickListener(view -> {
-            startActivity(new android.content.Intent(LessonsActivity.this, NewLessonActivity.class));
-        });
+        FloatingActionButton fabNewLesson = findViewById(R.id.fab_new_lesson);
+        fabNewLesson.setOnClickListener(view -> startActivity(new android.content.Intent(LessonsActivity.this, NewLessonActivity.class)));
 
         db = FirebaseFirestore.getInstance();
 
-        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         db.collection("users").document(currentUserId)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {

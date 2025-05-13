@@ -22,8 +22,6 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     //private static final String LOG_TAG = HomeActivity.class.getName();
     RecyclerView recyclerView;
-    private FirebaseUser user;
-    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +38,8 @@ public class HomeActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         }
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        db = FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         if (user != null){
             db.collection("users").document(user.getUid()).get().addOnSuccessListener(document -> {

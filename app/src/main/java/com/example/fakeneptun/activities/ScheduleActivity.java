@@ -13,14 +13,13 @@ import com.example.fakeneptun.model.Lesson;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ScheduleActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private LessonsAdapter adapter;
     private FirebaseFirestore db;
 
@@ -29,7 +28,7 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        recyclerView = findViewById(R.id.recyclerViewSchedule);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewSchedule);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new LessonsAdapter(new ArrayList<>(), false, true);
@@ -41,7 +40,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     private void loadEnrolledLessons() {
-        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         db.collection("lessons")
                 .whereArrayContains("enrolledStudents", currentUserId)

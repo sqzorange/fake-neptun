@@ -15,7 +15,6 @@ public class NewLessonActivity extends AppCompatActivity {
 
     private EditText etLessonName, etDuration, etCapacity;
     private FirebaseFirestore db;
-    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class NewLessonActivity extends AppCompatActivity {
         etLessonName = findViewById(R.id.etLessonName);
         etDuration = findViewById(R.id.etDuration);
         etCapacity = findViewById(R.id.etCapacity);
-        btnSave = findViewById(R.id.btnSave);
+        Button btnSave = findViewById(R.id.btnSave);
 
         db = FirebaseFirestore.getInstance();
 

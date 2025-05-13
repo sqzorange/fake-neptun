@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClassesActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class ClassesActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         db.collection("users").document(currentUserId)
                 .get()

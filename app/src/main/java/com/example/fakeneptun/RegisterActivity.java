@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (userName.isEmpty() || userEmail.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || familyName.isEmpty() || firstName.isEmpty()) {
+        if (userName.isEmpty() || userEmail.isEmpty() || password.isEmpty() || familyName.isEmpty() || firstName.isEmpty()) {
             Toast.makeText(this, "Minden mező kitöltése kötelező!", Toast.LENGTH_SHORT).show();
             return;
         }
