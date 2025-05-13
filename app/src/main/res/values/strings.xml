@@ -14,4 +14,6 @@
     <string name="logout">Kijelentkezés</string>
     <string name="loginSuccess">✔ Sikeres bejelentkezés!</string>
     <string name="registerSuccess">✔ Sikeres regisztráció</string>
+    <string name="diakneve">Diák neve</string>
+    <string name="diakemail">diak.email@example.com</string>
 </resources>
