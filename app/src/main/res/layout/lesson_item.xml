@@ -18,7 +18,7 @@
             android:id="@+id/lessonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Óra neve"
+            android:text="@string/ra_neve"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -26,21 +26,23 @@
             android:id="@+id/lessonDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Időtartam: 45 perc"
+            android:text="@string/id_tartam_45_perc"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lessonCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Férőhelyek száma: 30"
+            android:text="@string/f_r_helyek_sz_ma_30"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnEnroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Felvétel"
+            android:text="@string/felv_tel"
+            android:backgroundTint="#0943d9"
+            android:textColor="@android:color/white"
             android:layout_marginTop="8dp" />
 
     </LinearLayout>

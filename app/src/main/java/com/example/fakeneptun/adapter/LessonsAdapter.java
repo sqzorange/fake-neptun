@@ -22,10 +22,16 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.LessonVi
 
     private List<Lesson> lessonList;
     private boolean isTeacher;
+    private boolean hideEnrollControls;
 
-    public LessonsAdapter(List<Lesson> lessonList, boolean isTeacher) {
+    public LessonsAdapter(List<Lesson> lessonList, boolean isTeacher, boolean hideEnrollControls) {
         this.lessonList = lessonList;
         this.isTeacher = isTeacher;
+        this.hideEnrollControls = hideEnrollControls;
+    }
+
+    public LessonsAdapter(List<Lesson> lessonList, boolean isTeacher) {
+        this(lessonList, isTeacher, false);
     }
 
     public static class LessonViewHolder extends RecyclerView.ViewHolder {
@@ -58,11 +64,13 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.LessonVi
         holder.lessonDuration.setText(String.format("Időtartam: %d perc", lesson.getDuration()));
         holder.lessonCapacity.setText(String.format("Férőhelyek száma: %d", lesson.getCapacity()));
 
-        if (isTeacher) {
+        if (isTeacher || hideEnrollControls) {
             holder.btnEnroll.setVisibility(View.GONE);
+            holder.lessonCapacity.setVisibility(View.GONE);
             return;
         } else {
             holder.btnEnroll.setVisibility(View.VISIBLE);
+            holder.lessonCapacity.setVisibility(View.VISIBLE);
         }
 
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();

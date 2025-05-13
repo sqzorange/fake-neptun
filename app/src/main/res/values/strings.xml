@@ -16,4 +16,8 @@
     <string name="registerSuccess">✔ Sikeres regisztráció</string>
     <string name="diakneve">Diák neve</string>
     <string name="diakemail">diak.email@example.com</string>
+    <string name="felv_tel">Felvétel</string>
+    <string name="f_r_helyek_sz_ma_30">Férőhelyek száma: 30</string>
+    <string name="id_tartam_45_perc">Időtartam: 45 perc</string>
+    <string name="ra_neve">Óra neve</string>
 </resources>
