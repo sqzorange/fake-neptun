@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // Portrait: 2 oszlop
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         }
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         List<MenuItem> menuItems;
         if (isTeacher) {
             menuItems = Arrays.asList(
-                    new MenuItem("Óráim", R.drawable.ic_exam),
+                    new MenuItem("Tantárgyak", R.drawable.ic_exam),
                     new MenuItem("Hallgatók", R.drawable.ic_students),
                     new MenuItem("Jegyek rögzítése", R.drawable.ic_grades),
                     new MenuItem("Vizsgák kezelése", R.drawable.ic_exam),
@@ -68,9 +68,9 @@ public class HomeActivity extends AppCompatActivity {
             );
         } else {
             menuItems = Arrays.asList(
-                    new MenuItem("Órarend", R.drawable.ic_schedule),
+                    new MenuItem("Óráim", R.drawable.ic_schedule),
                     new MenuItem("Jegyek", R.drawable.ic_grades),
-                    new MenuItem("Tantárgyaim", R.drawable.ic_subjects),
+                    new MenuItem("Tárgyfelvét", R.drawable.ic_subjects),
                     new MenuItem("Vizsgák", R.drawable.ic_exam),
                     new MenuItem("Üzenetek", R.drawable.ic_message)
             );

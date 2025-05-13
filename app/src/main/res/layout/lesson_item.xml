@@ -20,24 +20,28 @@
             android:layout_height="wrap_content"
             android:text="Óra neve"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/lessonDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Időtartam: 60 perc"
-            android:textSize="16sp"
-            android:textColor="#444444" />
+            android:text="Időtartam: 45 perc"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/lessonCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Férőhelyek száma: 30"
-            android:textSize="16sp"
-            android:textColor="#444444" />
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnEnroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Felvétel"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

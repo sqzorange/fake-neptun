@@ -28,18 +28,17 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     private Context context;
     private List<MenuItem> items;
 
-    // Map to associate menu items with their corresponding activities
     private static final Map<String, Class<?>> activityMap = new HashMap<>();
 
     static {
-        activityMap.put("Óráim", LessonsActivity.class);
+        activityMap.put("Tantárgyak", LessonsActivity.class);
         activityMap.put("Hallgatók", StudentsActivity.class);
         activityMap.put("Jegyek rögzítése", GradesEntryActivity.class);
         activityMap.put("Vizsgák kezelése", ExamsManagementActivity.class);
         activityMap.put("Üzenetek", MessagesActivity.class);
-        activityMap.put("Órarend", ScheduleActivity.class);
+        activityMap.put("Óráim", ScheduleActivity.class);
         activityMap.put("Jegyek", GradesActivity.class);
-        activityMap.put("Tantárgyaim", ClassesActivity.class);
+        activityMap.put("Tárgyfelvét", ClassesActivity.class);
         activityMap.put("Vizsgák", ExamsActivity.class);
     }
 
@@ -72,10 +71,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.title.setText(item.title);
 
         holder.itemView.setOnClickListener(v -> {
-            // Trim the title to handle any trailing spaces
             String menuItemTitle = item.title.trim();
 
-            // Check if the activity exists in the map and launch it
             Class<?> activityClass = activityMap.get(menuItemTitle);
             if (activityClass != null) {
                 context.startActivity(new Intent(context, activityClass));

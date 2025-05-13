@@ -1,6 +1,5 @@
 package com.example.fakeneptun.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -12,6 +11,7 @@ import com.example.fakeneptun.R;
 import com.example.fakeneptun.adapter.LessonsAdapter;
 import com.example.fakeneptun.model.Lesson;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,25 +30,36 @@ public class LessonsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
 
-        // RecyclerView inicializálása
         recyclerView = findViewById(R.id.recyclerViewLessons);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new LessonsAdapter(new ArrayList<>());
-        recyclerView.setAdapter(adapter);
 
-        // Floating Action Button (FAB) inicializálása
         fabNewLesson = findViewById(R.id.fab_new_lesson);
         fabNewLesson.setOnClickListener(view -> {
-            // Új activity indítása, ahol az új óra adatai rögzíthetők
-            startActivity(new Intent(LessonsActivity.this, NewLessonActivity.class));
+            startActivity(new android.content.Intent(LessonsActivity.this, NewLessonActivity.class));
         });
 
-        // Firestore példány inicializálása
         db = FirebaseFirestore.getInstance();
-        loadLessons();
+
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.collection("users").document(currentUserId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    Boolean teacherFlag = documentSnapshot.getBoolean("isTeacher");
+                    boolean isTeacher = teacherFlag != null && teacherFlag;
+
+                    adapter = new LessonsAdapter(new ArrayList<>(), isTeacher);
+                    recyclerView.setAdapter(adapter);
+
+                    loadLessons();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(LessonsActivity.this, "Hiba a felhasználói adatok lekérésekor: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    adapter = new LessonsAdapter(new ArrayList<>(), false);
+                    recyclerView.setAdapter(adapter);
+                    loadLessons();
+                });
     }
 
-    // Lekérdezzük az órákat (például a "lessons" kollekcióból)
     private void loadLessons() {
         db.collection("lessons")
                 .get()
@@ -57,6 +68,7 @@ public class LessonsActivity extends AppCompatActivity {
                     for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
                         Lesson lesson = doc.toObject(Lesson.class);
                         if (lesson != null) {
+                            lesson.setId(doc.getId());
                             lessons.add(lesson);
                         }
                     }
@@ -70,7 +82,6 @@ public class LessonsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Ha új óra kerül felvételre a NewLessonActivity-ből, frissítsük a listát
         loadLessons();
     }
 }
