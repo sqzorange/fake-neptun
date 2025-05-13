@@ -1,6 +1,7 @@
 # Mobil alkalmazásfejlesztés gyakorlatok
 ## FakeNeptun
 ![neptun_logo](app/src/main/res/drawable/logo.png)
+
 Pixel 9 Android API 36-on ment a debuggolás.
 
 ## Müködés
