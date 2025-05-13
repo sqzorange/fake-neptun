@@ -17,7 +17,7 @@ import com.example.fakeneptun.activities.GradesEntryActivity;
 import com.example.fakeneptun.activities.MessagesActivity;
 import com.example.fakeneptun.activities.ScheduleActivity;
 import com.example.fakeneptun.activities.StudentsActivity;
-import com.example.fakeneptun.activities.SubjectsActivity;
+import com.example.fakeneptun.activities.LessonsActivity;
 import com.example.fakeneptun.model.MenuItem;
 
 import java.util.HashMap;
@@ -32,14 +32,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     private static final Map<String, Class<?>> activityMap = new HashMap<>();
 
     static {
-        activityMap.put("Óráim", ClassesActivity.class);
+        activityMap.put("Óráim", LessonsActivity.class);
         activityMap.put("Hallgatók", StudentsActivity.class);
         activityMap.put("Jegyek rögzítése", GradesEntryActivity.class);
         activityMap.put("Vizsgák kezelése", ExamsManagementActivity.class);
         activityMap.put("Üzenetek", MessagesActivity.class);
         activityMap.put("Órarend", ScheduleActivity.class);
         activityMap.put("Jegyek", GradesActivity.class);
-        activityMap.put("Tantárgyaim", SubjectsActivity.class);
+        activityMap.put("Tantárgyaim", ClassesActivity.class);
         activityMap.put("Vizsgák", ExamsActivity.class);
     }
 

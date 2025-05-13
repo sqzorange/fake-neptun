@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card:cardCornerRadius="8dp"
+    card:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/lessonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Óra neve"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/lessonDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Időtartam: 60 perc"
+            android:textSize="16sp"
+            android:textColor="#444444" />
+
+        <TextView
+            android:id="@+id/lessonCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Férőhelyek száma: 30"
+            android:textSize="16sp"
+            android:textColor="#444444" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

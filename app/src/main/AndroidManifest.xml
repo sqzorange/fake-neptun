@@ -10,11 +10,13 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.FakeNeptun">
+        <activity android:name=".activities.NewLessonActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ExamsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SubjectsActivity"
+            android:name=".activities.LessonsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.GradesActivity"
