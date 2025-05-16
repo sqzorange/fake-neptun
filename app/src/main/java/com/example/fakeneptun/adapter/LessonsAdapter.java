@@ -63,14 +63,11 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.LessonVi
         holder.lessonName.setText(lesson.getName());
         holder.lessonDuration.setText(String.format("Időtartam: %d perc", lesson.getDuration()));
         holder.lessonCapacity.setText(String.format("Férőhelyek száma: %d", lesson.getCapacity()));
-
-        // Ha hideEnrollControls igaz, akkor minden kontrolt elrejtünk (pl. diákok számára extra nézetben)
         if (hideEnrollControls) {
             holder.btnEnroll.setVisibility(View.GONE);
             holder.lessonCapacity.setVisibility(View.GONE);
             return;
         }
-        // Ha tanár, akkor csak a gombot rejtsük el, de a lessonCapacity látható legyen.
         if (isTeacher) {
             holder.btnEnroll.setVisibility(View.GONE);
             holder.lessonCapacity.setVisibility(View.VISIBLE);
@@ -78,8 +75,6 @@ public class LessonsAdapter extends RecyclerView.Adapter<LessonsAdapter.LessonVi
             holder.btnEnroll.setVisibility(View.VISIBLE);
             holder.lessonCapacity.setVisibility(View.VISIBLE);
         }
-
-        // Aktuális felhasználó UID-je
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final boolean[] isEnrolledHolder = new boolean[]{
                 lesson.getEnrolledStudents() != null && lesson.getEnrolledStudents().contains(currentUserId)

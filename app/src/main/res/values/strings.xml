@@ -20,4 +20,19 @@
     <string name="f_r_helyek_sz_ma_30">Férőhelyek száma: 30</string>
     <string name="id_tartam_45_perc">Időtartam: 45 perc</string>
     <string name="ra_neve">Óra neve</string>
+    <string name="v_lassza_ki_a_tant_rgyat">Válassza ki a tantárgyat:</string>
+    <string name="v_lassza_ki_a_di_kot">Válassza ki a diákot:</string>
+    <string name="v_lassza_ki_a_jegyet">Válassza ki a jegyet:</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="jegy_ment_se">Jegy mentése</string>
+    <string name="j">Új</string>
+    <string name="id_tartam_perc">Időtartam (perc)</string>
+    <string name="f_r_helyek_sz_ma">Férőhelyek száma</string>
+    <string name="ment_s">Mentés</string>
+    <string name="jegy">Jegy:</string>
+    <string name="tant_rgy">Tantárgy:</string>
 </resources>

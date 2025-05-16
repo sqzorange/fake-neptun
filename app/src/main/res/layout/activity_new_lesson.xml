@@ -10,26 +10,26 @@
         android:id="@+id/etLessonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Óra neve" />
+        android:hint="@string/ra_neve" />
 
     <EditText
         android:id="@+id/etDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Időtartam (perc)"
+        android:hint="@string/id_tartam_perc"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/etCapacity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Férőhelyek száma"
+        android:hint="@string/f_r_helyek_sz_ma"
         android:inputType="number" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mentés"
+        android:text="@string/ment_s"
         android:layout_marginTop="16dp" />
 </LinearLayout>

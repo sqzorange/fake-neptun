@@ -44,8 +44,6 @@ public class ClassesActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     Boolean teacherFlag = documentSnapshot.getBoolean("isTeacher");
                     isTeacher = (teacherFlag != null && teacherFlag);
-
-                    // Most az adaptert a megfelelő szerepkörrel újrainicializáljuk
                     adapter = new LessonsAdapter(new ArrayList<>(), isTeacher);
                     recyclerView.setAdapter(adapter);
 
@@ -67,7 +65,7 @@ public class ClassesActivity extends AppCompatActivity {
                             lessons.add(lesson);
                         }
                     }
-                    if (adapter != null) { // biztonsági ellenőrzés
+                    if (adapter != null) {
                         adapter.setLessons(lessons);
                         adapter.notifyDataSetChanged();
                     }
