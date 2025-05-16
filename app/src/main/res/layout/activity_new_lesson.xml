@@ -1,35 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etLessonName"
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/ra_neve" />
+        android:layout_marginTop="70dp">
 
-    <EditText
-        android:id="@+id/etDuration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/id_tartam_perc"
-        android:inputType="number" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
 
-    <EditText
-        android:id="@+id/etCapacity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/f_r_helyek_sz_ma"
-        android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ment_s"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+                <EditText
+                    android:id="@+id/etLessonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ra_neve"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/id_tartam_perc"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:importantForAutofill="no"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etCapacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/f_r_helyek_sz_ma"
+                    android:inputType="number"
+                    android:importantForAutofill="no"
+                    android:padding="8dp"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ment_s"
+            android:backgroundTint="#0943d9"
+            app:cornerRadius="8dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -22,18 +22,16 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView tvGreeting;  // Üdvözlő szöveg megjelenítéséhez
+    private TextView tvGreeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Feloldjuk a layout elemeit
         recyclerView = findViewById(R.id.recyclerView);
         tvGreeting = findViewById(R.id.tvGreeting);
 
-        // A RecyclerView elrendezését beállítjuk a képernyőorientáció alapján
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -49,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(document -> {
                         if (document.exists()) {
-                            // Lekérjük a felhasználó nevének "firstName" és "familyName" mezőit.
                             String firstName = document.getString("firstName");
                             String familyName = document.getString("familyName");
                             String fullName;
@@ -58,10 +55,8 @@ public class HomeActivity extends AppCompatActivity {
                             } else {
                                 fullName = (user.getDisplayName() != null) ? user.getDisplayName() : "Felhasználó";
                             }
-                            // Kiírjuk a greeting szöveget a képernyő tetején
                             tvGreeting.setText("Üdv, " + fullName);
 
-                            // Ellenőrizzük, hogy a felhasználó tanár-e
                             boolean isTeacher = Boolean.TRUE.equals(document.getBoolean("isTeacher"));
                             setupMenu(isTeacher);
                         }

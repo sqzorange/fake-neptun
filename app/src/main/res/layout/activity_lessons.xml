@@ -19,6 +19,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="30dp"
         android:contentDescription="@string/j"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        app:backgroundTint="#BFC6FF" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
