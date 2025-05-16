@@ -1,5 +1,6 @@
 package com.example.fakeneptun.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -32,19 +33,20 @@ public class LessonsActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewLessons);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new LessonsAdapter(new ArrayList<>(), false);
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fabNewLesson = findViewById(R.id.fab_new_lesson);
-        fabNewLesson.setOnClickListener(view -> startActivity(new android.content.Intent(LessonsActivity.this, NewLessonActivity.class)));
+        fabNewLesson.setOnClickListener(view ->
+                startActivity(new Intent(LessonsActivity.this, NewLessonActivity.class)));
 
         db = FirebaseFirestore.getInstance();
-
         String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         db.collection("users").document(currentUserId)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     Boolean teacherFlag = documentSnapshot.getBoolean("isTeacher");
                     boolean isTeacher = teacherFlag != null && teacherFlag;
-
                     adapter = new LessonsAdapter(new ArrayList<>(), isTeacher);
                     recyclerView.setAdapter(adapter);
 

@@ -33,8 +33,10 @@ public class ClassesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewLessons);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        db = FirebaseFirestore.getInstance();
+        adapter = new LessonsAdapter(new ArrayList<>(), false);
+        recyclerView.setAdapter(adapter);
 
+        db = FirebaseFirestore.getInstance();
         String currentUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         db.collection("users").document(currentUserId)
@@ -43,6 +45,7 @@ public class ClassesActivity extends AppCompatActivity {
                     Boolean teacherFlag = documentSnapshot.getBoolean("isTeacher");
                     isTeacher = (teacherFlag != null && teacherFlag);
 
+                    // Most az adaptert a megfelelő szerepkörrel újrainicializáljuk
                     adapter = new LessonsAdapter(new ArrayList<>(), isTeacher);
                     recyclerView.setAdapter(adapter);
 
@@ -64,8 +67,10 @@ public class ClassesActivity extends AppCompatActivity {
                             lessons.add(lesson);
                         }
                     }
-                    adapter.setLessons(lessons);
-                    adapter.notifyDataSetChanged();
+                    if (adapter != null) { // biztonsági ellenőrzés
+                        adapter.setLessons(lessons);
+                        adapter.notifyDataSetChanged();
+                    }
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(ClassesActivity.this, "Hiba: " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -74,6 +79,8 @@ public class ClassesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadLessons();
+        if (adapter != null) {
+            loadLessons();
+        }
     }
 }
