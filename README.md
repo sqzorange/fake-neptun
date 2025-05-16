@@ -9,8 +9,12 @@ Pixel 9 Android API 36-on ment a debuggolás.
 - Regisztráció
 - Hub / Főoldal
 - Tanár:
-  - Órák készítése
+  - Tantárgyak készítése / törlése
+  - Jegybeírás
+  - Hallgatók áttekintése
 - Diák:
-  - Órák felvétele
-  - Órák leadása
-> A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Jegyek rögtítése)
+  - Órák megtekintése
+  - Tantárgyak felvétele
+  - Tantárgyak leadása
+  - Jegyek megtentése
+> A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Üzenetek)
