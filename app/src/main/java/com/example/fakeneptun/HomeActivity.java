@@ -3,9 +3,9 @@ package com.example.fakeneptun;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-//import android.util.Log;
-import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,18 +20,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    //private static final String LOG_TAG = HomeActivity.class.getName();
-    RecyclerView recyclerView;
+
+    private RecyclerView recyclerView;
+    private TextView tvGreeting;  // Üdvözlő szöveg megjelenítéséhez
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Feloldjuk a layout elemeit
         recyclerView = findViewById(R.id.recyclerView);
+        tvGreeting = findViewById(R.id.tvGreeting);
 
+        // A RecyclerView elrendezését beállítjuk a képernyőorientáció alapján
         int orientation = getResources().getConfiguration().orientation;
-
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         } else {
@@ -41,15 +44,31 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        if (user != null){
-            db.collection("users").document(user.getUid()).get().addOnSuccessListener(document -> {
-                if (document.exists()) {
-                    boolean isTeacher = Boolean.TRUE.equals(document.getBoolean("isTeacher"));
-                    setupMenu(isTeacher);
-                }
-            }).addOnFailureListener(e -> Toast.makeText(this, "Nem sikerült lekérni a felhasználót.", Toast.LENGTH_SHORT).show());
+        if (user != null) {
+            db.collection("users").document(user.getUid())
+                    .get()
+                    .addOnSuccessListener(document -> {
+                        if (document.exists()) {
+                            // Lekérjük a felhasználó nevének "firstName" és "familyName" mezőit.
+                            String firstName = document.getString("firstName");
+                            String familyName = document.getString("familyName");
+                            String fullName;
+                            if (firstName != null && familyName != null) {
+                                fullName = firstName + " " + familyName;
+                            } else {
+                                fullName = (user.getDisplayName() != null) ? user.getDisplayName() : "Felhasználó";
+                            }
+                            // Kiírjuk a greeting szöveget a képernyő tetején
+                            tvGreeting.setText("Üdv, " + fullName);
+
+                            // Ellenőrizzük, hogy a felhasználó tanár-e
+                            boolean isTeacher = Boolean.TRUE.equals(document.getBoolean("isTeacher"));
+                            setupMenu(isTeacher);
+                        }
+                    })
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Nem sikerült lekérni a felhasználót.", Toast.LENGTH_SHORT).show());
         } else {
-            //Log.d(LOG_TAG, "Felhasználó nincs bejelentkezve!");
             finish();
         }
     }
@@ -62,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
                     new MenuItem("Hallgatók", R.drawable.ic_students),
                     new MenuItem("Jegyek rögzítése", R.drawable.ic_grades),
                     new MenuItem("Vizsgák kezelése", R.drawable.ic_exam),
-                    new MenuItem("Üzenetek ", R.drawable.ic_message)
+                    new MenuItem("Üzenetek", R.drawable.ic_message)
             );
         } else {
             menuItems = Arrays.asList(
@@ -73,7 +92,6 @@ public class HomeActivity extends AppCompatActivity {
                     new MenuItem("Üzenetek", R.drawable.ic_message)
             );
         }
-
         MenuAdapter adapter = new MenuAdapter(this, menuItems);
         recyclerView.setAdapter(adapter);
     }
