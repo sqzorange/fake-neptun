@@ -26,7 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.MessagesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.ExamsManagementActivity"
             android:exported="false" />

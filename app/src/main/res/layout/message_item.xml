@@ -16,22 +16,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvLessonName"
+            android:id="@+id/tvSender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tant_rgy"
+            android:text="@string/felad_neve"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/tvGradeValue"
+            android:id="@+id/tvMessageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/jegy"
+            android:text="@string/zenet_tartalma"
             android:layout_marginTop="4dp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="@color/black"/>
 
+        <TextView
+            android:id="@+id/tvTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_b_lyeg"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

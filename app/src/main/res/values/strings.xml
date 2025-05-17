@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FakeNeptun</string>
-    <string name="username">Felhasználónév</string>
+    <string name="username">Neptun kód</string>
     <string name="password">Jelszó</string>
     <string name="login">Bejelentkezés</string>
     <string name="register">Regisztráció</string>
@@ -37,4 +37,9 @@
     <string name="tant_rgy">Tantárgy:</string>
     <string name="dv_felhaszn_l">Üdv, Felhasználó</string>
     <string name="t_rl_s">Törlés</string>
+    <string name="felad_neve">Feladó neve</string>
+    <string name="zenet_tartalma">Üzenet tartalma</string>
+    <string name="id_b_lyeg">Időbélyeg</string>
+    <string name="rj_zenetet">Írj üzenetet…</string>
+    <string name="k_ld_s">Küldés</string>
 </resources>
