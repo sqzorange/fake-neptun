@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Landscape esetén a felső margó helyett a vízszintes oldalakra is adunk margót -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLessons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_new_lesson"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="30dp"
+        android:contentDescription="@string/j"
+        app:srcCompat="@drawable/ic_add"
+        app:backgroundTint="#BFC6FF" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
