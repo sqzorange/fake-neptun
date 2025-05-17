@@ -12,9 +12,13 @@ Pixel 9 Android API 36-on ment a debuggolás.
   - Tantárgyak készítése / törlése
   - Jegybeírás
   - Hallgatók áttekintése
+  - Fórum üzenet
+  - Fórum áttekintés
 - Diák:
   - Órák megtekintése
   - Tantárgyak felvétele
   - Tantárgyak leadása
   - Jegyek megtentése
-> A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Üzenetek)
+  - Fórum üzenet
+  - Fórum áttekintés
+> A többi ikon a hubon (főoldalon) még fejlesztésre vár (pl.: Vizsgák)
