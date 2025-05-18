@@ -16,13 +16,9 @@ public class Grade {
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
-
     public String getLesson() { return lesson; }
     public void setLesson(String lesson) { this.lesson = lesson; }
-
-    public String getStudentId() { return studentId; }
     public void setStudentId(String studentId) { this.studentId = studentId; }
-
     public double getGradeValue() { return gradeValue; }
     public void setGradeValue(double gradeValue) { this.gradeValue = gradeValue; }
 

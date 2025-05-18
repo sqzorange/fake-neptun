@@ -28,7 +28,7 @@ public class NotificationHelper {
     public static void sendGradeNotification(Context context, String subject) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle("Új jegyet kaptál!")
+                .setContentTitle("Itt láthatóak a jegyeid")
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
