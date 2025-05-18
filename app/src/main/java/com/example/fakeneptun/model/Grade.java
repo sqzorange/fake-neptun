@@ -25,4 +25,5 @@ public class Grade {
 
     public double getGradeValue() { return gradeValue; }
     public void setGradeValue(double gradeValue) { this.gradeValue = gradeValue; }
+
 }

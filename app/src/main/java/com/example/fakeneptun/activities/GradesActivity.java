@@ -5,10 +5,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fakeneptun.adapter.NotificationHelper;
 import com.example.fakeneptun.R;
 import com.example.fakeneptun.adapter.GradesAdapter;
 import com.example.fakeneptun.model.Grade;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class GradesActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         loadGrades();
+        listenForGradeChanges();
     }
 
     private void loadGrades() {
@@ -59,5 +63,26 @@ public class GradesActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadGrades();
+    }
+
+    private void listenForGradeChanges() {
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.collection("grades")
+                .whereEqualTo("studentId", currentUserId)
+                .addSnapshotListener((snapshot, e) -> {
+                    if (e != null) {
+                        Toast.makeText(GradesActivity.this, "Hiba a jegyek figyelésekor!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (snapshot != null && !snapshot.isEmpty()) {
+                        for (DocumentChange dc : snapshot.getDocumentChanges()) {
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                Grade newGrade = dc.getDocument().toObject(Grade.class);
+                                NotificationHelper.sendGradeNotification(this, "Új jegybeírás történt!");
+                            }
+                        }
+                    }
+                });
     }
 }
